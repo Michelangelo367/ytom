@@ -2,6 +2,39 @@ import os
 import googleapiclient.discovery
 import pandas as pd
 from textblob import TextBlob
+import re
+import logging
+import requests
+
+
+def is_youtube_url(url):
+    # returns True if the Youtube URL is valid
+    regex_youtube_url_validator = (
+        r'^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$')
+    if re.fullmatch(regex_youtube_url_validator, url):
+        try:
+            code = requests.get(url).status_code
+            if code == 200:
+                return True
+            else:
+                return False
+        except Exception as e:
+            logging.exception(
+                "Error occured while validating YouTube URL.\n", e)
+            return False
+    else:
+        return False
+
+
+def get_video_id_from_youtube_url(url):
+    regex_video_id = (
+        r'(https?://)?(www\.)?(youtube|youtu|youtube-nocookie)\.(com|be)/(watch\?v=|embed/|v/|.+\?v=)?(?P<id>[A-Za-z0-9\-=_]{11})')
+    match = re.match(regex_video_id, url)
+    if match:
+        return match.group('id')
+    else:
+        logging.exception("No video ID found in the URL")
+        return ''
 
 
 def get_comments(video_id):
