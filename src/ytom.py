@@ -5,6 +5,7 @@ from textblob import TextBlob
 import re
 import logging
 import requests
+import streamlit as st
 
 
 def is_youtube_url(url):
@@ -76,9 +77,9 @@ def sentiment_analysis(comments):
 
     # sentiment
     for index, row in df.iterrows():
-        if row['polarity'] > 0:
+        if row['polarity'] > 0.05:
             df.loc[index, ['sentiment']] = 'positive'
-        if row['polarity'] < 0:
+        if row['polarity'] < -0.05:
             df.loc[index, ['sentiment']] = 'negative'
         if row['polarity'] == 0:
             df.loc[index, ['sentiment']] = 'neutral'

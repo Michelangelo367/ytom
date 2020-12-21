@@ -4,6 +4,7 @@ import plotly.graph_objects as go
 from src.ytom import *
 
 
+@st.cache
 def get_fig_colors(df):
     colors = []
     for sentiment in df['sentiment']:
@@ -16,6 +17,7 @@ def get_fig_colors(df):
     return colors
 
 
+@st.cache
 def get_fig(df):
     colors = get_fig_colors(df)
     fig = go.Figure(data=[go.Bar(
@@ -38,13 +40,19 @@ if __name__ == "__main__":
         'Youtube Video URL', 'https://www.youtube.com/watch?v=ASKPfSQvdnM')
 
     if is_youtube_url(video_url) != True:
-        st.title('Invalid YouTube URL')
-        st.write(
+        st.error('Invalid YouTube URL')
+        st.warning(
             'This URL does not seem to be valid. Please provide a YouTube Video URL in the input field.')
     else:
         video_id = get_video_id_from_youtube_url(video_url)
-        comments = get_comment_threads(youtube, video_id)
-        df = sentiment_analysis(comments)
+        with st.spinner('Processing...'):
+            comments = []
+            comments = comments.clear()
+            comments = get_comment_threads(
+                youtube, video_id, comments=[], token="")
+            st.info(len(comments))
+            st.write(comments)
+            df = sentiment_analysis(comments)
 
         df
 

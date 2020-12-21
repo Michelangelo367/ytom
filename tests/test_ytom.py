@@ -1,7 +1,5 @@
 import pytest
 from src.ytom import *
-import pandas as pd
-from textblob import TextBlob
 
 
 @pytest.mark.parametrize("url,expected", [
