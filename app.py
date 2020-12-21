@@ -46,12 +46,8 @@ if __name__ == "__main__":
     else:
         video_id = get_video_id_from_youtube_url(video_url)
         with st.spinner('Processing...'):
-            comments = []
-            comments = comments.clear()
             comments = get_comment_threads(
                 youtube, video_id, comments=[], token="")
-            st.info(len(comments))
-            st.write(comments)
             df = sentiment_analysis(comments)
 
         df
