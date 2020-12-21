@@ -74,8 +74,9 @@ def get_comments(video_id):
                     textFormat="plainText",
                     pageToken=nextPageToken).execute()
                 totalResults = int(results["pageInfo"]["totalResults"])
-            except HttpError:
-                print("An HTTP error occurred:\n", e.resp.status, e.content)
+            except Exception as e:
+                logging.exception(
+                    "An error occurred while fetching viddeo comments:\n", e.resp.status, e.content)
                 halt = True
 
         if halt == False:
@@ -93,8 +94,8 @@ def get_comments(video_id):
                 first = False
                 try:
                     nextPageToken = results["nextPageToken"]
-                except KeyError:
-                    print("An KeyError error occurred:", e)
+                except KeyError as e:
+                    logging.exception("A KeyError error occurred:\n", e)
                     further = False
 
     return comments
