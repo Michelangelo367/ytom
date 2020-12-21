@@ -27,6 +27,7 @@ def is_youtube_url(url):
 
 
 def get_video_id_from_youtube_url(url):
+    # get Video ID from YouTube URL
     regex_video_id = (
         r'(https?://)?(www\.)?(youtube|youtu|youtube-nocookie)\.(com|be)/(watch\?v=|embed/|v/|.+\?v=)?(?P<id>[A-Za-z0-9\-=_]{11})')
     match = re.match(regex_video_id, url)
@@ -37,68 +38,33 @@ def get_video_id_from_youtube_url(url):
         return ''
 
 
-def get_comments(video_id):
-    # Disable OAuthlib's HTTPS verification when running locally.
-    # *DO NOT* leave this option enabled in production.
+def get_authenticated_service():
     os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
-
     api_service_name = "youtube"
     api_version = "v3"
     DEVELOPER_KEY = "AIzaSyD4cZ8-G16DENJzsuKHn4kPdZLQ9YbVccE"
-
     youtube = googleapiclient.discovery.build(
         api_service_name, api_version, developerKey=DEVELOPER_KEY)
+    return youtube
 
+
+def get_comment_threads(youtube, video_id, comments=[], token=""):
     results = youtube.commentThreads().list(
         part="snippet",
-        maxResults=100,
+        pageToken=token,
         videoId=video_id,
-        textFormat="plainText").execute()
+        textFormat="plainText"
+    ).execute()
 
-    totalResults = 0
-    totalResults = int(results["pageInfo"]["totalResults"])
-    count = 0
-    nextPageToken = ''
-    comments = []
-    further = True
-    first = True
+    for item in results["items"]:
+        comment = item["snippet"]["topLevelComment"]
+        text = comment["snippet"]["textDisplay"]
+        comments.append(text)
 
-    while further:
-        halt = False
-        if first == False:
-            try:
-                results = youtube.commentThreads().list(
-                    part="snippet",
-                    maxResults=100,
-                    videoId=video_id,
-                    textFormat="plainText",
-                    pageToken=nextPageToken).execute()
-                totalResults = int(results["pageInfo"]["totalResults"])
-            except Exception as e:
-                logging.exception(
-                    "An error occurred while fetching viddeo comments:\n", e.resp.status, e.content)
-                halt = True
-
-        if halt == False:
-            count += totalResults
-            for item in results["items"]:
-                text = item["snippet"]["topLevelComment"]["snippet"]["textDisplay"]
-                comments.append(text)
-
-            if totalResults < 100:
-                further = False
-                first = False
-
-            else:
-                further = True
-                first = False
-                try:
-                    nextPageToken = results["nextPageToken"]
-                except KeyError as e:
-                    logging.exception("A KeyError error occurred:\n", e)
-                    further = False
-
-    return comments
+    if "nextPageToken" in results:
+        return get_comment_threads(youtube, video_id, comments, results["nextPageToken"])
+    else:
+        return comments
 
 
 def sentiment_analysis(comments):
