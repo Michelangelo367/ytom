@@ -38,7 +38,7 @@ if __name__ == "__main__":
         'Youtube Video URL', 'https://www.youtube.com/watch?v=ASKPfSQvdnM')
 
     if is_youtube_url(video_url) != True:
-        st.title('Invalid YouTube URL!')
+        st.title('Invalid YouTube URL')
         st.write(
             'This URL does not seem to be valid. Please provide a YouTube Video URL in the input field.')
     else:
