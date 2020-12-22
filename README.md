@@ -1,7 +1,7 @@
 # YTOM ~ YouTube Opinion Mining
-> Automatically understand the feelings and emotions from YouTube Comments.
+> Automatically extracts sentiment of YouTube comments..
 
-This project creates a website on which users can fill in the link of a YouTube video to extract the comments, analyze their feelings, and finally sort them according to the sentiment.
+This project is a website on which users can fill in the link of a YouTube video to extract the comments, analyze their feelings, and finally sort them according to the sentiment.
 
 This project has an educative purpose of understanding how to create and deploy a Python project with the YouTube Data API v3, Streamlit, and Heroku.
 
