@@ -103,6 +103,6 @@ if __name__ == "__main__":
             st.table(df_value_counts)
 
             fig = get_fig(df_value_counts)
-            st.plotly_chart(fig)
+            st.plotly_chart(fig, use_container_width=True)
 
             sentiment_overview(df)
