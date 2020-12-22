@@ -47,20 +47,8 @@ This product does not have an apparent use in its current form. It is currently 
 ## Release History
 
 * 0.1.0
-    * The first release
+    * First release
     * `sentiment_analysis()` and `sentiment_overview()`
-* 0.0.6
-    * Heroku and secret_key
-* 0.0.5
-    * app.py
-* 0.0.4
-    * sentiment_analysis() & sentiment_analysis()
-* 0.0.3
-    * test_is_youtube_url() & test_get_video_id_from_youtube_url()
-* 0.0.2
-    * is_youtube_url() & get_video_id_from_youtube_url()
-* 0.0.1
-    * YouTube API & get_comment_threads()
 
 ## Meta
 
