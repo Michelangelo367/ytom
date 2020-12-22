@@ -69,6 +69,15 @@ def get_comment_threads(youtube, video_id, comments=[], token=""):
         return comments
 
 
+def get_video_snippet(youtube, video_id):
+    request = youtube.videos().list(
+        part="snippet",
+        id=video_id
+    )
+    response = request.execute()
+    return response['items'][0]['snippet']
+
+
 def sentiment_analysis(comments):
     df = pd.DataFrame(data=comments, columns=['text'])
 
