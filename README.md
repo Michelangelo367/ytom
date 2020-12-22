@@ -17,6 +17,14 @@ Install libraries:
 pip3 install -r requirements.txt
 ```
 
+YOUTUBE_SECRET_KEY:
+
+```sh
+# create an .env file and add your API key as shown in .env-sample
+YOUTUBE_SECRET_KEY=Some value
+# don't forget to add your secret key in your Heroku config vars before deploying
+```
+
 Run on localhost with Streamlit:
 
 ```sh
@@ -29,8 +37,6 @@ Deploy with Heroku:
 # You need to download Heroku CLI and create an account
 heroku login
 heroku create
-git add .
-git commit -m "heroku"
 git push heroku main
 ```
 
@@ -41,13 +47,23 @@ This product does not have an apparent use in its current form. It is currently 
 ## Release History
 
 * 0.1.0
-    * The first proper release
+    * The first release
     * `sentiment_analysis()` and `sentiment_overview()`
+* 0.0.6
+    * Heroku and secret_key
+* 0.0.5
+    * app.py
+* 0.0.4
+    * sentiment_analysis() & sentiment_analysis()
+* 0.0.3
+    * test_is_youtube_url() & test_get_video_id_from_youtube_url()
+* 0.0.2
+    * is_youtube_url() & get_video_id_from_youtube_url()
 * 0.0.1
-    * Work in progress
+    * YouTube API & get_comment_threads()
 
 ## Meta
 
-Loïc Rouiller-Monay – [@loicrm](https://twitter.com/loicrm) – loicrouillermonay@gmail.com
+Loïc Rouiller-Monay – [@loicrm](https://twitter.com/loicrm)
 
 [https://github.com/loicrouillermonay](https://github.com/loicrouillermonay/)
