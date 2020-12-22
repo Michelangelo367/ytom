@@ -65,8 +65,8 @@ def streamlit_config():
 
 if __name__ == "__main__":
     streamlit_config()
-
-    youtube = get_authenticated_service()
+    DEVELOPER_KEY = os.environ.get('YOUTUBE_SECRET_KEY', None)
+    youtube = get_authenticated_service(DEVELOPER_KEY)
     st.title('YTOM ~ YouTube Opinion Mining')
     st.subheader('Description')
     st.write(

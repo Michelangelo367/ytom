@@ -39,12 +39,10 @@ def get_video_id_from_youtube_url(url):
         return ''
 
 
-def get_authenticated_service():
+def get_authenticated_service(DEVELOPER_KEY):
     os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "0"
     api_service_name = "youtube"
     api_version = "v3"
-    with open("src/.secret/config.txt", "r") as f:
-        DEVELOPER_KEY = f.read()
     youtube = googleapiclient.discovery.build(
         api_service_name, api_version, developerKey=DEVELOPER_KEY, cache_discovery=False)
     return youtube
