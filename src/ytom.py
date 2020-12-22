@@ -43,7 +43,8 @@ def get_authenticated_service():
     os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
     api_service_name = "youtube"
     api_version = "v3"
-    DEVELOPER_KEY = "AIzaSyD4cZ8-G16DENJzsuKHn4kPdZLQ9YbVccE"
+    with open("src/.secret/config.txt", "r") as f:
+        DEVELOPER_KEY = f.read()
     youtube = googleapiclient.discovery.build(
         api_service_name, api_version, developerKey=DEVELOPER_KEY)
     return youtube
