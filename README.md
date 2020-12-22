@@ -7,7 +7,7 @@ This project has an educative purpose of understanding how to create and deploy 
 
 https://youtube-opinion-mining.herokuapp.com/
 
-![](header.png)
+![](ytom_preview.gif)
 
 ## Installation
 

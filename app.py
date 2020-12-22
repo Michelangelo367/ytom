@@ -38,14 +38,14 @@ def sentiment_overview(df):
         ('Positive', 'Negative', 'Neutral'))
 
     if option == 'All':
-        if len(df['text'].tolist()) > 0:
-            st.table(df['text'])
+        if len(df['comments'].tolist()) > 0:
+            st.table(df['comments'])
         else:
             st.info('There is no comments on this video.')
     else:
-        if len(df[df['sentiment'] == lowerstrip(option)]['text'].tolist()) > 0:
+        if len(df[df['sentiment'] == lowerstrip(option)]['comments'].tolist()) > 0:
             st.table(df[df['sentiment'] == lowerstrip(option)]
-                     ['text'])
+                     ['comments'])
         else:
             st.info(
                 f'There is no {lowerstrip(option)} comments on this video.')

@@ -46,7 +46,7 @@ def get_authenticated_service():
     with open("src/.secret/config.txt", "r") as f:
         DEVELOPER_KEY = f.read()
     youtube = googleapiclient.discovery.build(
-        api_service_name, api_version, developerKey=DEVELOPER_KEY, cache_discovery=False)
+        api_service_name, api_version, developerKey=DEVELOPER_KEY)
     return youtube
 
 
@@ -79,10 +79,10 @@ def get_video_snippet(youtube, video_id):
 
 
 def sentiment_analysis(comments):
-    df = pd.DataFrame(data=comments, columns=['text'])
+    df = pd.DataFrame(data=comments, columns=['comments'])
 
     # polarity
-    df['polarity'] = df['text'].apply(
+    df['polarity'] = df['comments'].apply(
         lambda x: float(TextBlob(x).sentiment[0]))
 
     # sentiment
