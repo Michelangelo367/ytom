@@ -85,6 +85,10 @@ def sentiment_analysis(comments):
         if row['polarity'] == 0:
             df.loc[index, ['sentiment']] = 'neutral'
 
+    return df
+
+
+def sentiment_analysis_value_counts(df):
     d = {'count': df.sentiment.value_counts().values.tolist(
     ), 'sentiment': df.sentiment.value_counts().index.tolist()}
     return pd.DataFrame(data=d)
