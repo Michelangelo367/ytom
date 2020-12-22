@@ -46,7 +46,7 @@ def get_authenticated_service():
     with open("src/.secret/config.txt", "r") as f:
         DEVELOPER_KEY = f.read()
     youtube = googleapiclient.discovery.build(
-        api_service_name, api_version, developerKey=DEVELOPER_KEY)
+        api_service_name, api_version, developerKey=DEVELOPER_KEY, cache_discovery=False)
     return youtube
 
 

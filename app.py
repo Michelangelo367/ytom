@@ -26,9 +26,7 @@ def get_fig(df):
         textposition='auto',
         marker_color=colors
     )])
-    fig.update_layout(autosize=False,
-                      width=500, height=300,
-                      margin=dict(l=180, r=0, b=10, t=10))
+    fig.update_layout(autosize=True, height=300, margin=dict(b=10, t=10))
     return fig
 
 
