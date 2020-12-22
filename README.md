@@ -54,4 +54,6 @@ This product does not have an apparent use in its current form. It is currently 
 
 Loïc Rouiller-Monay – [@loicrm](https://twitter.com/loicrm)
 
+Distributed under MIT License. See [`LICENSE`](https://github.com/loicrouillermonay/ytom/blob/main/LICENSE) for more information.
+
 [https://github.com/loicrouillermonay](https://github.com/loicrouillermonay/)
