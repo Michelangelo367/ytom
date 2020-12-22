@@ -5,6 +5,8 @@ This project creates a website on which users can fill in the link of a YouTube 
 
 This project has an educative purpose of understanding how to create and deploy a Python project with the YouTube Data API v3, Streamlit, and Heroku.
 
+https://youtube-opinion-mining.herokuapp.com/
+
 ![](header.png)
 
 ## Installation
@@ -15,13 +17,13 @@ Install libraries:
 pip3 install -r requirements.txt
 ```
 
-Run streamlit on localhost:
+Run on localhost with Streamlit:
 
 ```sh
 streamlit run app.py
 ```
 
-Deploy with heroku:
+Deploy with Heroku:
 
 ```sh
 # You need to download Heroku CLI and create an account
@@ -46,7 +48,7 @@ This product does not have an apparent use in its current form. It is currently 
 
 ## Meta
 
-Loïc Rouiller-Monay – [@loicrm](https://twitter.com/loicrm) – YourEmail@example.com
+Loïc Rouiller-Monay – [@loicrm](https://twitter.com/loicrm) – loicrouillermonay@gmail.com
 
 Distributed under the XYZ license. See ``LICENSE`` for more information.
 
@@ -54,7 +56,7 @@ Distributed under the XYZ license. See ``LICENSE`` for more information.
 
 ## Contributing
 
-1. Fork it (<https://github.com/yourname/yourproject/fork>)
+1. Fork it (<https://github.com/loicrouillermonay/ytom/fork>)
 2. Create your feature branch (`git checkout -b feature/fooBar`)
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
