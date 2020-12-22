@@ -1,7 +1,7 @@
-google-api-python-client
-google-auth-oauthlib 
-google-auth-httplib2
-textblob
-plotly
-pandas
-streamlit
+requests==2.25.0
+pytest==0.0.0
+streamlit==0.73.0
+pandas==1.1.5
+plotly==4.14.1
+textblob==0.15.3
+google_api_python_client==1.12.8
