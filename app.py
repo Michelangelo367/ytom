@@ -51,9 +51,20 @@ def sentiment_overview(df):
                 f'There is no {lowerstrip(option)} comments on this video.')
 
 
-if __name__ == "__main__":
+def streamlit_config():
     st.set_page_config(
         page_title='YTOM')
+    hide_streamlit_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            </style>
+            """
+    st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
+
+if __name__ == "__main__":
+    streamlit_config()
 
     youtube = get_authenticated_service()
     st.title('YTOM ~ YouTube Opinion Mining')
