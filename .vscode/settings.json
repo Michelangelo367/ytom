@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "/Users/loic/opt/miniconda3/bin/python",
+    "python.pythonPath": "/Users/loic/opt/anaconda3/bin/python",
     "python.testing.pytestArgs": [
         "."
     ],

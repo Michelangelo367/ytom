@@ -82,8 +82,6 @@ if __name__ == "__main__":
     else:
         video_id = get_video_id_from_youtube_url(video_url)
         video_snippet = get_video_snippet(youtube, video_id)
-        if int(video_snippet['statistics']['commentCount']) == 0:
-            st.error('Video has no comment.')
         if int(video_snippet['statistics']['commentCount']) > 5000:
             st.error('Video exceed the limit of 5000 comments.')
             st.header('Video exceed the limit of comments.')
@@ -93,21 +91,24 @@ if __name__ == "__main__":
         else:
             st.info(
                 f'{ video_snippet["snippet"]["channelTitle"] } ~ { video_snippet["snippet"]["title"] }')
-            with st.spinner('Processing...'):
-                comments = get_comment_threads(
-                    youtube, video_id, comments=[], token="")
-            if len(comments) == 0:
+            if int(video_snippet['statistics']['commentCount']) == 0:
                 st.error('Video has no comment.')
             else:
-                df = sentiment_analysis(comments)
-                df_value_counts = sentiment_analysis_value_counts(df)
+                with st.spinner('Processing...'):
+                    comments = get_comment_threads(
+                        youtube, video_id, comments=[], token="")
+                if len(comments) == 0:
+                    st.error('Video has no comments.')
+                else:
+                    df = sentiment_analysis(comments)
+                    df_value_counts = sentiment_analysis_value_counts(df)
 
-                st.subheader('Sentiment analysis')
-                st.write(
-                    'The table and figure below shows the distribution of sentiments in the video comments.')
-                st.table(df_value_counts)
+                    st.subheader('Sentiment analysis')
+                    st.write(
+                        'The table and figure below shows the distribution of sentiments in the video comments.')
+                    st.table(df_value_counts)
 
-                fig = get_fig(df_value_counts)
-                st.plotly_chart(fig, use_container_width=True)
+                    fig = get_fig(df_value_counts)
+                    st.plotly_chart(fig, use_container_width=True)
 
-                sentiment_overview(df)
+                    sentiment_overview(df)
