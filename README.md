@@ -17,12 +17,12 @@ Install libraries:
 pip3 install -r requirements.txt
 ```
 
-YOUTUBE_SECRET_KEY:
+Create .env file:
 
 ```sh
-# create an .env file and add your API key as shown in .env-sample
+# create an .env file and add your API key as shown with .env-sample
+# don't forget to add your API key in your Heroku config vars before deploying with Heroku
 YOUTUBE_SECRET_KEY=Some value
-# don't forget to add your secret key in your Heroku config vars before deploying
 ```
 
 Run on localhost with Streamlit:
