@@ -71,11 +71,11 @@ def get_comment_threads(youtube, video_id, comments=[], token=""):
 
 def get_video_snippet(youtube, video_id):
     request = youtube.videos().list(
-        part="snippet",
+        part="snippet, statistics",
         id=video_id
     )
     response = request.execute()
-    return response['items'][0]['snippet']
+    return response['items'][0]
 
 
 def sentiment_analysis(comments):

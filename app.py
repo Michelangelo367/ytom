@@ -32,21 +32,23 @@ def get_fig(df):
 
 def sentiment_overview(df):
     st.subheader('Overview of comments')
+    st.write('Sort the comments by sentiment based on polarity and then it displays them in the list below.')
     option = st.selectbox(
-        'Sort the comments by sentiment based on polarity and then it displays them in the list below.',
+        'Select the sentiment',
         ('Positive', 'Negative', 'Neutral'))
 
     if option == 'All':
         if len(df['text'].tolist()) > 0:
             st.table(df['text'])
         else:
-            st.info('There is no comments on the video.')
+            st.info('There is no comments on this video.')
     else:
         if len(df[df['sentiment'] == lowerstrip(option)]['text'].tolist()) > 0:
             st.table(df[df['sentiment'] == lowerstrip(option)]
                      ['text'])
         else:
-            st.info(f'There is no {lowerstrip(option)} comments on the video.')
+            st.info(
+                f'There is no {lowerstrip(option)} comments on this video.')
 
 
 if __name__ == "__main__":
@@ -69,18 +71,27 @@ if __name__ == "__main__":
     else:
         video_id = get_video_id_from_youtube_url(video_url)
         video_snippet = get_video_snippet(youtube, video_id)
-        st.info(
-            f'{ video_snippet["channelTitle"] } ~ { video_snippet["title"] }')
-        with st.spinner('Processing...'):
-            comments = get_comment_threads(
-                youtube, video_id, comments=[], token="")
-            df = sentiment_analysis(comments)
-            df_value_counts = sentiment_analysis_value_counts(df)
+        if int(video_snippet['statistics']['commentCount']) > 5000:
+            st.error('Video exceed the limit of 5000 comments.')
+            st.header('Video exceed the limit of comments.')
+            st.write(
+                'For performance and cost reasons, this service is limited to videos with less than 5000 comments. If you are interested in more, please contact me.')
+            st.write('https://www.linkedin.com/in/loic-rouiller-monay/')
+        else:
+            st.info(
+                f'{ video_snippet["snippet"]["channelTitle"] } ~ { video_snippet["snippet"]["title"] }')
+            with st.spinner('Processing...'):
+                comments = get_comment_threads(
+                    youtube, video_id, comments=[], token="")
+                df = sentiment_analysis(comments)
+                df_value_counts = sentiment_analysis_value_counts(df)
 
-        st.subheader('Sentiment analysis')
-        st.table(df_value_counts)
+            st.subheader('Sentiment analysis')
+            st.write(
+                'The table and figure below shows the distribution of sentiments in the video comments.')
+            st.table(df_value_counts)
 
-        fig = get_fig(df_value_counts)
-        st.plotly_chart(fig)
+            fig = get_fig(df_value_counts)
+            st.plotly_chart(fig)
 
-        sentiment_overview(df)
+            sentiment_overview(df)
