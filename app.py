@@ -30,7 +30,6 @@ def get_fig(df):
     return fig
 
 
-@st.cache()
 def sentiment_overview(df):
     st.subheader('Overview of comments')
     option = st.selectbox(
