@@ -40,7 +40,7 @@ def get_video_id_from_youtube_url(url):
 
 
 def get_authenticated_service():
-    os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
+    os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "0"
     api_service_name = "youtube"
     api_version = "v3"
     with open("src/.secret/config.txt", "r") as f:
