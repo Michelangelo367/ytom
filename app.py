@@ -52,6 +52,9 @@ def sentiment_overview(df):
 
 
 if __name__ == "__main__":
+    st.set_page_config(
+        page_title='YTOM')
+
     youtube = get_authenticated_service()
     st.title('YTOM ~ YouTube Opinion Mining')
     st.subheader('Description')
