@@ -51,11 +51,3 @@ This product does not have an apparent use in its current form. It is currently 
 Loïc Rouiller-Monay – [@loicrm](https://twitter.com/loicrm) – loicrouillermonay@gmail.com
 
 [https://github.com/loicrouillermonay](https://github.com/loicrouillermonay/)
-
-## Contributing
-
-1. Fork it (<https://github.com/loicrouillermonay/ytom/fork>)
-2. Create your feature branch (`git checkout -b feature/fooBar`)
-3. Commit your changes (`git commit -am 'Add some fooBar'`)
-4. Push to the branch (`git push origin feature/fooBar`)
-5. Create a new Pull Request
